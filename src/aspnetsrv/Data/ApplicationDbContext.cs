@@ -24,5 +24,9 @@ namespace aspnetsrv.Data
         }
 
         public DbSet<Customer> Customer { get; set; }
+
+        public DbSet<Good> Good { get; set; }
+
+        public DbSet<Order> Order { get; set; }
     }
 }
