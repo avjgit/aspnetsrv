@@ -21,6 +21,17 @@ namespace aspnetsrv.API
             _context = context;
         }
 
+        // GET: api/CustomersApi/MostOrders
+        [HttpGet("MostOrders")]
+        public IEnumerable<Customer> GetBestCustomer()
+        {
+
+            var customersWithOrders = _context.Customer.Include(c => c.Orders);
+
+            var maxOrders = customersWithOrders.OrderByDescending(c => c.Orders.Count).FirstOrDefault().Orders.Count;
+            return customersWithOrders.Where(c => c.Orders.Count == maxOrders).ToList();
+        }
+        
         // GET: api/CustomersApi
         [HttpGet]
         public IEnumerable<Customer> GetCustomer()

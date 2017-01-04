@@ -21,6 +21,13 @@ namespace aspnetsrv.API
             _context = context;
         }
 
+        // GET: api/GoodsApi/InStock/PriceGreater/{price}
+        [HttpGet("InStock/PriceGreater/{price}")]
+        public int GetAmountsPerPrice(decimal price)
+        {
+            return _context.Good.Where(g => g.Price >= price).Sum(g => g.AmountInStock);
+        }
+
         // GET: api/GoodsApi
         [HttpGet]
         public IEnumerable<Good> GetGood()

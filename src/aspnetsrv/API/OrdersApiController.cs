@@ -28,8 +28,22 @@ namespace aspnetsrv.API
             return _context.Order;
         }
 
+        // GET: api/OrdersApi/NotPaid
+        [HttpGet("NotPaid")]
+        public IEnumerable<Order> GetNotPaid()
+        {
+            return _context.Order.Where(o => !o.IsPaid).ToList();
+        }
+
+        // GET: api/OrdersApi/DeliveredNotPaid
+        [HttpGet("DeliveredNotPaid")]
+        public IEnumerable<Order> GetNotPaidDelivered()
+        {
+            return _context.Order.Where(o => !o.IsPaid).Where(o => o.DeliveryDate.HasValue).ToList();
+        }
+
         // GET: api/OrdersApi/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetOrder([FromRoute] int id)
         {
             if (!ModelState.IsValid)

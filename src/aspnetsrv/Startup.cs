@@ -79,6 +79,11 @@ namespace aspnetsrv
 
             app.UseMvc(routes =>
             {
+                //routes.MapRoute(
+                //   name: "getNotPaid",
+                //   template: "OrdersApi/NotPaid",
+                //   defaults: new { controller = "OrdersApi", action = "GetNotPaid" });
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
