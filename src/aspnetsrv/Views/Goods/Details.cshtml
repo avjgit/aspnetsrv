@@ -40,6 +40,30 @@
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Orders)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Is paid</th>
+                    <th>Delivery date</th>
+                </tr>
+                @foreach (var item in Model.Orders)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(x => item.Id)</td>
+                        <td>@Html.DisplayFor(x => item.Customer.FullName)</td>
+                        <td>@Html.DisplayFor(x => item.Date)</td>
+                        <td>@Html.DisplayFor(x => item.IsPaid)</td>
+                        <td>@Html.DisplayFor(x => item.DeliveryDate)</td>
+                    </tr>
+                }
+            </table>
+        </dd>
     </dl>
 </div>
 <div>
