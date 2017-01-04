@@ -34,7 +34,7 @@ namespace aspnetsrv.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order.SingleOrDefaultAsync(m => m.Id == id);
+            var order = await _context.Order.Include(o => o.Customer).Include(o => o.Good).SingleOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
                 return NotFound();
